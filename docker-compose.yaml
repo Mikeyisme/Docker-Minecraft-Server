@@ -7,12 +7,12 @@ services:
       - "25565:25565"
       - "9940:9940"
     environment:
-      #TYPE: AUTO_CURSEFORGE
-      #CF_API_KEY: "$$2a$$10$$vB9yQw5mI1fuwbftfEyU.OAQ.s7uJJJ86Z8yrvYW05DT7rmPxH5Gi"
-      #CF_PAGE_URL: https://www.curseforge.com/minecraft/modpacks/all-the-mods-8/files/4633481
-      #CF_EXCLUDE_MODS: "486778"
-      #MEMORY: "4G"
-      #VERISON: "1.19.2"
+      TYPE: AUTO_CURSEFORGE
+      CF_API_KEY: "" # your curseforge api key
+      CF_PAGE_URL: https://www.curseforge.com/minecraft/modpacks/all-the-mods-8/files/4633481
+      CF_EXCLUDE_MODS: "486778"
+      MEMORY: "4G"
+      VERISON: "1.19.2"
       EULA: "TRUE"
     volumes:
       # attach the relative directory 'data' to the container's /data path
