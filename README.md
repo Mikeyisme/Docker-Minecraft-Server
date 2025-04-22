@@ -2,6 +2,8 @@
 
 This project contains a **production-ready Minecraft server** running in a **Docker container** for easy deployment, management, and scaling. Perfect for private servers, LAN parties, or long-term worlds with persistent data.
 
+![Server Preview](./images/Montior.jpg)
+
 ---
 
 ## 🚀 Quick Start
@@ -14,6 +16,7 @@ This project contains a **production-ready Minecraft server** running in a **Doc
 2. Edit the file to match your environment
 3. Run `docker compose up -d` within the same directory where your `docker-compose.yaml` file resides.
 
+---
 
 ### Sources
 [Docker Hub itzg/minecraft-server Image ](https://hub.docker.com/r/itzg/minecraft-server)
