@@ -1,0 +1,71 @@
+services:
+  mc:
+    image: itzg/minecraft-server #:java17 (specify java version if neccesary)
+    tty: true
+    stdin_open: true
+    ports:
+      - "25565:25565"
+      - "9940:9940"
+    environment:
+      #TYPE: AUTO_CURSEFORGE
+      #CF_API_KEY: "$$2a$$10$$vB9yQw5mI1fuwbftfEyU.OAQ.s7uJJJ86Z8yrvYW05DT7rmPxH5Gi"
+      #CF_PAGE_URL: https://www.curseforge.com/minecraft/modpacks/all-the-mods-8/files/4633481
+      #CF_EXCLUDE_MODS: "486778"
+      #MEMORY: "4G"
+      #VERISON: "1.19.2"
+      EULA: "TRUE"
+    volumes:
+      # attach the relative directory 'data' to the container's /data path
+      - A:\mcdata:/data
+    restart: on-failure:3
+    networks:
+      minecraft:
+        aliases:
+          - minecraft
+  prometheus:
+    image: bitnami/prometheus
+    tty: true
+    stdin_open: true
+    volumes:
+      - A:\prometheus\prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+    networks:
+      minecraft:
+        aliases:
+          - prometheus
+  grafana:
+    image: grafana/grafana
+    stdin_open: true
+    ports:
+      - "3000:3000"
+    volumes:
+      - A:\grafana:/var/lib/grafana
+    networks:
+      minecraft:
+        aliases:
+          - grafana
+  promtail:
+    image: grafana/promtail
+    stdin_open: true
+    volumes:
+      - A:\mcdata\logs:/var/log
+    networks:
+      minecraft:
+        aliases:
+          - promtail
+  loki:
+    image: grafana/loki
+    stdin_open: true
+    ports:
+      - "3100:3100"
+    restart: on-failure:3
+    networks:
+      minecraft:
+        aliases:
+          - grafana
+
+
+networks:
+  minecraft:
+    name: minecraft
